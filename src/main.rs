@@ -1,3 +1,5 @@
+use rstest::rstest;
+
 fn main() {
     println!("Hello, world!");
 }
@@ -9,13 +11,9 @@ pub fn greet(name: &str) -> String {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_greet() {
-        assert_eq!(greet(""), "Hello, world!".to_string());
-        assert_eq!(greet("Alice"), "Hello, Alice!".to_string());
-    }
+#[rstest]
+#[case("Alice", "Hello, Alice!".to_string())]
+#[case("", "Hello, world!".to_string())]
+fn test_greet(#[case] input: &str, #[case] expected: String) {
+    assert_eq!(expected, greet(input))
 }
