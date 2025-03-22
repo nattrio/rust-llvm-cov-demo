@@ -1,7 +1,7 @@
 .PHONY: setup
 setup:
 	which cargo-nextest || cargo install cargo-nextest --locked
-	which  cargo-llvm-cov || cargo +stable install cargo-llvm-cov --locked
+	which cargo-llvm-cov || cargo +stable install cargo-llvm-cov --locked
 	cargo add rstest
 
 .PHONY: lcov lcov-watch lcov-html
